@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake API</title>
+    <style>
+        table {
+            border: 1px solid black;
+            width: 70vw;
+            box-shadow: 0px 0px 20px black;
+            margin: 10px auto;
+
+        }
+
+        tr {
+            line-height: 30px;
+        }
+
+        td {
+            padding: 0px 15px;
+        }
+
+        tr,
+        td,
+        th {
+            border: 1px solid black;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgb(219, 59, 59);
+            color: white
+        }
+
+        th {
+            background-color: rgb(16, 128, 255);
+            color: white
+        }
+
+        tr:hover {
+            background-color: rgb(250, 186, 174);
+            color: black;
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(179, 2, 179);
+            text-shadow: 0px 0px 100px red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Products</h1>
+        <table class="container">
+            <thead>
+
+                <th>Item Id</th>
+                <th>Item Name</th>
+                <th>Price</th>
+
+            </thead>
+            <tbody id="data">
+
+            </tbody>
+        </table>
+    </div>
+    <script>fetch('https://fakestoreapi.com/products').then(
+            res => {
+                res.json().then(
+                    data => {
+                        console.log(data);
+                        if (data.length > 0) {
+                            var temp = "";
+                            data.forEach((u) => {
+                                temp += "<tr>";
+                                temp += "<td>" + u.id + "</td>";
+
+                                temp += "<td>" + u.title + "</td>";
+                                temp += "<td>" + u.price + "</td ></tr>";
+
+                            }
+                            )
+                            document.getElementById('data').innerHTML = temp;
+                        }
+                    }
+                )
+            }
+        )</script>
+</body>
+
+</html>
